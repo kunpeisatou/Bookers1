@@ -1,0 +1,59 @@
+<h1>投稿一覧</h1>
+<% @books.each do |book| %>
+  <p>タイトル</p>
+  <span>
+    <%= link_to book.title, "/books/#{book.id}" %>
+  </span>
+
+<% end %>
+
+<!--エラーメッセージここから-->
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+<!--エラーメッセージここまで-->
+
+<%= form_with model:@book, url:'/books', local:true do |f| %>
+  <h4>タイトル</h4>
+  <%= f.text_field :title %>
+  <h4>本文</h4>
+  <%= f.text_area :body %>
+  <%= f.submit '投稿' %>
+<% end %>
+
+<!--ここから課題フォーマット-->
+<h1>Books</h1>
+
+<table>
+ <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+   <tr>
+    <td>リーダブルコード</td>
+    <td>より良いコードを書くためのシンプルで実践的なテクニック</td>
+    <td><a class="show_27558" href="/books/27558">Show</a></td>
+    <td><a class="edit_27558" href="/books/27558/edit">Edit</a></td>
+    <td><a data-confirm="Are you sure?" class="destroy_27558" rel="nofollow" data-method="delete" href="/books/27558">Destroy</a></td>
+   </tr>
+  </tbody>
+</table>
+
+<h2>New book</h2>
+<%= form_with model:@book, url:'/books', local:true do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>Body</h4>
+  <%= f.text_area :body %>
+  <div class="actions">
+   <%= f.submit 'Create Book' %>
+  </div>
+<% end %>

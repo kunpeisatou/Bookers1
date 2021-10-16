@@ -15,7 +15,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to book_path(@book.id)
     else
-      redirect_to index_path
+      render :index
     end
   end
 

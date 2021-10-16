@@ -1,11 +1,4 @@
-<h1>投稿一覧</h1>
-<% @books.each do |book| %>
-  <p>タイトル</p>
-  <span>
-    <%= link_to book.title, "/books/#{book.id}" %>
-  </span>
-
-<% end %>
+<!--レッスンフォーマット削除-->
 
 <!--エラーメッセージここから-->
 <% if @book.errors.any? %>
@@ -16,13 +9,7 @@
 <% end %>
 <!--エラーメッセージここまで-->
 
-<%= form_with model:@book, url:'/books', local:true do |f| %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-  <h4>本文</h4>
-  <%= f.text_area :body %>
-  <%= f.submit '投稿' %>
-<% end %>
+<!--レッスンフォーマット削除-->
 
 <!--ここから課題フォーマット-->
 <h1>Books</h1>

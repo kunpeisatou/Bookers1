@@ -1,24 +1,42 @@
-<!--レッスンフォーマット削除-->
+<body>
+<!--編集成功メッセージここから-->
+<p id="notice"><%= flash[:notice] %></p>
+<!--編集成功メッセージここまで-->
 
-<!--ここから課題フォーマット-->
 <h1>Editing Book</h1>
 
-<%= form_with model:@book, url:"/books/#{@book.id}", local:true do |f| %>
+<!--エラーメッセージここから-->
+<% if @book.errors.any? %>
+<div id="error_explanation">
+   <h2><%= @book.errors.count %> errors prohibited this book from being saved:</h2>
+   <ul>
+     <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+   </ul>
+</div>
+<% end %>
+<!--エラーメッセージここまで-->
+
+<div class="form">
+ <%= form_with model:@book, url:"/books/#{@book.id}", local:true do |f| %>
 
   <div class="field">
-    <p>Title</p>
+    <div class="label">Title</div>
     <%= f.text_field :title %>
   </div>
 
   <div class="field">
-    <p>Body</p>
+    <div class="label">Body</div>
     <%= f.text_area :body %>
   </div>
 
   <div class="actions">
     <%= f.submit 'Update Book' %>
   </div>
-<% end %>
+ <% end %>
+</div>
 
 <%= link_to "Show", "/books/#{@book.id}" %> |
-<%= link_to "Back", index_path %>
+<%= link_to "Back", books_path %>
+</body>
